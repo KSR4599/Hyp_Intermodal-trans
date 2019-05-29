@@ -1,0 +1,48 @@
+
+namespace org.acme.interm.container
+
+
+import org.acme.interm.truck.Truck
+
+
+asset Container identified by containerId {
+  // Solution to the exercise - try out the Regular expression at http://regex101.com
+  // Share your optimized regular expression with others :) 
+  o   String            containerId regex=/[A-Z][A-Z][0-9][0-9][0-9]-[0-9][0-9]-[0-3][0-9]-[0-9][0-9]/
+  o   String            containerNumber
+  o   Route             route
+  --> Truck        truck  optional
+}
+
+concept Route {
+  o   String    origin       regex=/[A-Z][A-Z][A-Z]/
+  o   String    destination  regex=/[A-Z][A-Z][A-Z]/
+  o   DateTime  schedule  
+}
+
+// Logistics department of ACME creates the flights
+transaction CreateContainer {
+  o   String      containerNumber
+  o   String      origin
+  o   String      destination
+  o   DateTime    schedule
+}
+
+event ContainerCreated {
+  o   String     containerId
+}
+
+// Assigns an aircraft to the flight
+// The logistics / validation on availability of aircraft
+// Kept outside of the Blockchain
+transaction AssignTruck {
+  o   String    containerId
+  o   String    truckId
+}
+
+// Event indicating that aircraft was assigned
+event TruckAssigned {
+  o   String    containerId
+  o   String    truckId
+}
+

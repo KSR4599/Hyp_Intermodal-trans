@@ -1,0 +1,31 @@
+// Returns all flights 
+query AllContainers {
+  description: "Returns all containers in the registry"
+  statement:  
+    SELECT  org.acme.interm.container.Container
+}
+
+// Uses the Limit and Skip
+query AllContainersSkipLimit {
+  description: "Limits the number of containers returned"
+  statement:  
+    SELECT  org.acme.interm.container.Container
+      LIMIT  _$limit
+        SKIP   _$skip
+}
+
+// Selects flights based on the origin and destination
+query ContainersOriginAndDestination {
+  description: "Returns all containers in the registry"
+  statement:  
+    SELECT  org.acme.interm.container.Container
+      WHERE   (route.origin == _$origin AND route.destination  == _$destination )
+}
+
+// Selects flights based on the origin, destination & exact Schedule datetime (yep its not good :)
+query ContainersOnOriginDestinationDate {
+  description: "Returns all containers in the registry"
+  statement:  
+    SELECT  org.acme.interm.container.Container
+    WHERE (route.origin == _$origin AND route.destination  == _$destination AND route.schedule == _$date)
+}
