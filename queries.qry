@@ -29,3 +29,20 @@ query ContainersOnOriginDestinationDate {
     SELECT  org.acme.interm.container.Container
     WHERE (route.origin == _$origin AND route.destination  == _$destination AND route.schedule == _$date)
 }
+
+//Returns all the container details based on its ID
+query ContainerDetails {
+ description: "Returns the available Normal Weight in the container"
+  statement:  
+    SELECT  org.acme.interm.container.Container
+    WHERE (containerNumber == _$containerNumber)
+}
+
+//Returns all the truck details based on its ID
+query TruckDetails {
+ description: "Returns the truck details based on its id"
+  statement:  
+    SELECT  org.acme.interm.truck.Truck
+    WHERE (truckId == _$truckId)
+}
+

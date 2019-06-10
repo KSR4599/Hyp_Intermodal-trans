@@ -1,16 +1,15 @@
 namespace org.acme.interm.truck
 
-/** Aircraft is an ACME Asset*/
+import org.acme.interm.container.Container
+
 
 asset Truck identified by truckId {
-  o String      truckId
-
-  o Ownership   ownershipType default="LEASED"
-
-  // Number of seats per class
-  o Integer     normalWeight      range = [,100]
-  o Integer     fragileWeight   range = [,50]
-
+  o String truckId          
+  o Ownership ownershipType default="LEASED"
+  o Integer totalNormalWeight default=0
+  o Integer totalFragileWeight default=0
+  o Integer containersAlloted
+  --> Container[] containersLoaded optional
 }
 
 enum Ownership {
@@ -18,3 +17,6 @@ enum Ownership {
   o   OWNED
 }
 
+  transaction truckDetails {
+  o   String    truckId
+}

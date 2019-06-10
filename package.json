@@ -1,6 +1,6 @@
 {
   "name": "intermm",
-  "version": "0.0.4",
+  "version": "0.0.9",
   "description": "Incremental creation of the ACME model",
   "scripts": {
     "test": "mocha --recursive"
