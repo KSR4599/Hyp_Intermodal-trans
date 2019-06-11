@@ -3,6 +3,7 @@ namespace org.acme.interm.container
 
 import org.acme.interm.truck.Truck
 
+
 asset Container identified by containerId {
 
   o String containerId regex=/[A-Z][A-Z][0-9][0-9][0-9]-[0-9][0-9]-[0-3][0-9]-[0-9][0-9]/
@@ -13,11 +14,7 @@ asset Container identified by containerId {
   o Route route
   --> Truck truck optional 
   o Boolean readyToLoad
-}
-
-enum shipmentType {
-  o   Normal
-  o   Fragile
+  o Status status
 }
 
 
@@ -32,6 +29,18 @@ concept Shipment {
   o Integer weight
   o shipmentType type
 }
+
+enum Status {
+  o   Intransit
+  o   Delivered
+}
+
+enum shipmentType {
+  o   Normal
+  o   Fragile
+}
+
+
 
 // Logistics department of ACME creates the flights
 transaction CreateContainer {
@@ -72,6 +81,8 @@ o String containerId
 o Shipment shipment
 
 }
+
+
 
 event ContainerLoaded {
 o String containerId
