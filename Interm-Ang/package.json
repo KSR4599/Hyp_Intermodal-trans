@@ -1,0 +1,73 @@
+{
+  "name": "Interm-Ang",
+  "description": "Angular App. for Inter M",
+  "version": "0.0.1",
+  "author": "KSR",
+  "email": "ksreddy4599@gmail.com",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=8",
+    "npm": ">=5"
+  },
+  "bin": {
+    "Interm-Ang": "app.js"
+  },
+  "scripts": {
+    "ng": "ng",
+    "build": "ng build",
+    "prepack": "npm run build",
+    "start": "ng serve --proxy-config proxy.conf.js --host 0.0.0.0",
+    "lint": "tslint \"src/**/*.ts\"",
+    "test": "ng test --watch false",
+    "pree2e": "webdriver-manager update --standalone false --gecko false",
+    "e2e": "protractor"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular-devkit/build-angular": "^0.800.2",
+    "@angular/animations": "^8.0.0",
+    "@angular/cdk": "^8.0.1",
+    "@angular/common": "^8.0.0",
+    "@angular/compiler": "^8.0.0",
+    "@angular/core": "^8.0.0",
+    "@angular/forms": "^8.0.0",
+    "@angular/http": "^7.2.15",
+    "@angular/material": "^8.0.1",
+    "@angular/platform-browser": "^8.0.0",
+    "@angular/platform-browser-dynamic": "^8.0.0",
+    "@angular/router": "^8.0.0",
+    "bootstrap": "^4.3.1",
+    "cfenv": "^1.2.2",
+    "concurrently": "^4.1.0",
+    "config": "^3.1.0",
+    "core-js": "^3.1.3",
+    "express": "^4.17.1",
+    "hammerjs": "^2.0.8",
+    "http-proxy-middleware": "^0.19.1",
+    "jquery": "^3.4.1",
+    "rxjs": "^6.5.2",
+    "rxjs-compat": "^6.5.2",
+    "tether": "^1.4.6",
+    "zone.js": "^0.9.1"
+  },
+  "devDependencies": {
+    "@angular/cli": "^8.0.2",
+    "@angular/compiler-cli": "^8.0.0",
+    "@types/jasmine": "^3.3.13",
+    "@types/node": "^12.0.8",
+    "codelyzer": "~2.0.0",
+    "jasmine-core": "^3.4.0",
+    "jasmine-spec-reporter": "^4.2.1",
+    "karma": "^4.1.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-cli": "^2.0.0",
+    "karma-coverage-istanbul-reporter": "^2.0.5",
+    "karma-jasmine": "^2.0.1",
+    "karma-jasmine-html-reporter": "^1.4.2",
+    "protractor": "^5.4.2",
+    "sinon": "^7.3.2",
+    "ts-node": "^8.2.0",
+    "tslint": "^5.17.0",
+    "typescript": "^3.4.3"
+  }
+}
