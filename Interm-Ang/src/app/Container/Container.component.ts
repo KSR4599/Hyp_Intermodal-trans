@@ -15,7 +15,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ContainerService } from './Container.service';
+import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import 'rxjs/add/operator/toPromise';
+import { MatDialog } from '@angular/material';
+import { addContainerComponent } from './addContainer.component';
+
 
 @Component({
   selector: 'app-container',
@@ -23,7 +27,12 @@ import 'rxjs/add/operator/toPromise';
   styleUrls: ['./Container.component.css'],
   providers: [ContainerService]
 })
+
+
 export class ContainerComponent implements OnInit {
+
+  displayedColumns = ['containerId','origin','destination','shipments', 'normalWeight', 'fragileWeight', 'status', 'readyToLoad'];
+
 
   myForm: FormGroup;
 
@@ -41,8 +50,10 @@ export class ContainerComponent implements OnInit {
   truck = new FormControl('', Validators.required);
   readyToLoad = new FormControl('', Validators.required);
   status = new FormControl('', Validators.required);
+ 
+  dataSource = {};
 
-  constructor(public serviceContainer: ContainerService, fb: FormBuilder) {
+  constructor(public serviceContainer: ContainerService, fb: FormBuilder,private dialog: MatDialog) {
     this.myForm = fb.group({
       containerId: this.containerId,
       containerNumber: this.containerNumber,
@@ -60,16 +71,47 @@ export class ContainerComponent implements OnInit {
     this.loadAll();
   }
 
+
+ openDialog() {
+
+  const dialogRef = this.dialog.open(addContainerComponent, {
+     
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+     
+    });
+    
+   
+  }
+
+
   loadAll(): Promise<any> {
     const tempList = [];
+    var i;
     return this.serviceContainer.getAll()
     .toPromise()
     .then((result) => {
       this.errorMessage = null;
       result.forEach(asset => {
         tempList.push(asset);
+  
       });
+
       this.allAssets = tempList;
+      for(i=0;i<this.allAssets.length;i++){
+        if(this.allAssets[i].truck){
+          this.allAssets[i].truck = this.allAssets[i].truck.substring(this.allAssets[i].truck.indexOf("#") + 1);
+
+        } else {
+          this.allAssets[i].truck ="Not Assigned"
+        }
+      }
+     
+
+      console.log("All the containers :", this.allAssets);
+  
     })
     .catch((error) => {
       if (error === 'Server error') {

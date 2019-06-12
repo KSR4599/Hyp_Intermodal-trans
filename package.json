@@ -20,6 +20,7 @@
     "mocha": "latest"
   },
   "dependencies": {
+    "@angular/flex-layout": "^8.0.0-beta.26",
     "chai": "^4.1.2"
   }
 }

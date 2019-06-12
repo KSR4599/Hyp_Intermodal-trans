@@ -21,6 +21,7 @@ import { DataService } from './data.service';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { ContainerComponent } from './Container/Container.component';
 import { TruckComponent } from './Truck/Truck.component';
@@ -38,6 +39,9 @@ import { addTruckComponent } from './addTruck/addTruck.component';
 import { getContainerComponent } from './getContainer/getContainer.component';
 import { readyContainerComponent } from './readyContainer/readyContainer.component';
 import { truckDetailsComponent } from './truckDetails/truckDetails.component';
+import { HeaderComponent } from './navigation/header/header.component';
+import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
+import { addContainerComponent } from './Container/addContainer.component';
 
   @NgModule({
   declarations: [
@@ -55,7 +59,10 @@ import { truckDetailsComponent } from './truckDetails/truckDetails.component';
     addTruckComponent,
     getContainerComponent,
     readyContainerComponent,
-    truckDetailsComponent
+    truckDetailsComponent,
+    HeaderComponent,
+    SidenavListComponent,
+    addContainerComponent
   ],
   imports: [
     BrowserModule,
@@ -64,11 +71,13 @@ import { truckDetailsComponent } from './truckDetails/truckDetails.component';
     HttpModule,
     MaterialModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FlexLayoutModule 
   ],
   providers: [
     DataService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [addContainerComponent]
 })
 export class AppModule { }

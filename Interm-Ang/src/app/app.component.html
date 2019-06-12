@@ -10,7 +10,7 @@
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
--->
+
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -65,5 +65,38 @@
       </ul>
     </div>
   </nav>
+
+  <button mat-fab color="primary">Primary</button>
   
   <router-outlet></router-outlet>
+-->
+
+
+<mat-sidenav-container>
+
+  <!-- Side Navigation Part-->
+  <mat-sidenav #sidenav role="navigation">
+<app-sidenav-list (closeSidenav)="sidenav.close()"></app-sidenav-list>
+
+  </mat-sidenav>
+
+
+    <!-- Top Toolbar Part-->
+
+  <mat-sidenav-content>
+    
+<app-header (sidenavToggle)="sidenav.toggle()"></app-header>
+
+    <main>
+  
+      <router-outlet></router-outlet>
+    </main>
+
+  </mat-sidenav-content>
+
+
+
+
+</mat-sidenav-container>
+
+
