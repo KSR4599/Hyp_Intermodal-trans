@@ -60,6 +60,27 @@
                                 <td class="asset-properties">{{asset.readyToLoad}}</td>
                             
                                 <td class="asset-properties">{{asset.status}}</td>
+                                
+                                <button mat-button  color="primary" matTooltip="Add Shipment" (click)="openDialog1(asset.containerId)">
+                                    <mat-icon>local_hospital</mat-icon>
+                                    
+                                </button>
+
+
+                                <button mat-button color="primary" matTooltip="Clear Container for Truck Assignment" (click)="openDialog2(asset.containerId)">
+                                  <mat-icon>check_circle</mat-icon>
+                                  
+                              </button>
+
+
+
+                                <button mat-button color="primary" matTooltip="Assign Truck">
+                                    <mat-icon>local_shipping</mat-icon>
+                                    
+                                </button>
+
+                              
+
                               </tr>
                         </tbody>
                       </table>

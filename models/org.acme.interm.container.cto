@@ -77,7 +77,8 @@ event ContainerCleared {
 
 transaction LoadContainer {
 o String containerId
-o Shipment shipment
+o shipmentType type
+o Integer weight
 
 }
 
@@ -93,6 +94,7 @@ transaction addTruck {
   o String truckId
   o Integer normalWeight
   o Integer fragileWeight
+  o String schedule
 }
 
 event TruckCreated {

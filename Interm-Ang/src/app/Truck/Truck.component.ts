@@ -15,7 +15,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { TruckService } from './Truck.service';
+import { MatDialog } from '@angular/material';
 import 'rxjs/add/operator/toPromise';
+
+import { addTruckComponent } from '../addTruck/addTruck.component';
 
 @Component({
   selector: 'app-truck',
@@ -39,7 +42,7 @@ export class TruckComponent implements OnInit {
   containersAlloted = new FormControl('', Validators.required);
   containersLoaded = new FormControl('', Validators.required);
 
-  constructor(public serviceTruck: TruckService, fb: FormBuilder) {
+  constructor(public serviceTruck: TruckService, fb: FormBuilder, private dialog: MatDialog) {
     this.myForm = fb.group({
       truckId: this.truckId,
       ownershipType: this.ownershipType,
@@ -54,6 +57,21 @@ export class TruckComponent implements OnInit {
     this.loadAll();
   }
 
+
+  openDialog() {
+
+    const dialogRef = this.dialog.open(addTruckComponent, {
+       
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+       
+      });
+      
+     
+    }
+
   loadAll(): Promise<any> {
     const tempList = [];
     return this.serviceTruck.getAll()
@@ -64,6 +82,7 @@ export class TruckComponent implements OnInit {
         tempList.push(asset);
       });
       this.allAssets = tempList;
+      console.log("All the trucks :", this.allAssets);
     })
     .catch((error) => {
       if (error === 'Server error') {

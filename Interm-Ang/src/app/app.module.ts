@@ -78,6 +78,6 @@ import { addContainerComponent } from './Container/addContainer.component';
     DataService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [addContainerComponent]
+  entryComponents: [addContainerComponent, CreateContainerComponent]
 })
 export class AppModule { }

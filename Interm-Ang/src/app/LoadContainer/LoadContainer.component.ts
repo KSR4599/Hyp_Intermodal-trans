@@ -16,6 +16,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { LoadContainerService } from './LoadContainer.service';
 import 'rxjs/add/operator/toPromise';
+import {  Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-loadcontainer',
@@ -31,25 +33,27 @@ export class LoadContainerComponent implements OnInit {
   private Transaction;
   private currentId;
   private errorMessage;
-
-  containerId = new FormControl('', Validators.required);
-  shipment = new FormControl('', Validators.required);
-  transactionId = new FormControl('', Validators.required);
-  timestamp = new FormControl('', Validators.required);
+ private currentContainer;
 
 
-  constructor(private serviceLoadContainer: LoadContainerService, fb: FormBuilder) {
+  type = new FormControl('', Validators.required);
+  weight = new FormControl('', Validators.required);
+
+
+
+  constructor(private serviceLoadContainer: LoadContainerService, fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public passedData: any) {
     this.myForm = fb.group({
-      containerId: this.containerId,
-      shipment: this.shipment,
-      transactionId: this.transactionId,
-      timestamp: this.timestamp
+      type: this.type,
+      weight: this.weight
     });
   };
 
   ngOnInit(): void {
     this.loadAll();
+    console.log("The passes Data", this.passedData.containerId);
   }
+
+
 
   loadAll(): Promise<any> {
     const tempList = [];
@@ -101,28 +105,24 @@ export class LoadContainerComponent implements OnInit {
   addTransaction(form: any): Promise<any> {
     this.Transaction = {
       $class: 'org.acme.interm.container.LoadContainer',
-      'containerId': this.containerId.value,
-      'shipment': this.shipment.value,
-      'transactionId': this.transactionId.value,
-      'timestamp': this.timestamp.value
+      'containerId': this.passedData.containerId,
+      'type': this.type.value,
+      'weight':this.weight.value
     };
 
     this.myForm.setValue({
-      'containerId': null,
-      'shipment': null,
-      'transactionId': null,
-      'timestamp': null
+      'type': null,
+      'weight':null
     });
 
     return this.serviceLoadContainer.addTransaction(this.Transaction)
     .toPromise()
     .then(() => {
+      console.log("Loaded Container Successfully!");
       this.errorMessage = null;
       this.myForm.setValue({
-        'containerId': null,
-        'shipment': null,
-        'transactionId': null,
-        'timestamp': null
+        'weight':null,
+        'type':null
       });
     })
     .catch((error) => {
@@ -137,9 +137,9 @@ export class LoadContainerComponent implements OnInit {
   updateTransaction(form: any): Promise<any> {
     this.Transaction = {
       $class: 'org.acme.interm.container.LoadContainer',
-      'containerId': this.containerId.value,
-      'shipment': this.shipment.value,
-      'timestamp': this.timestamp.value
+      'containerId': this.passedData.containerId,
+      'weight': this.weight.value,
+      'type': this.type.value
     };
 
     return this.serviceLoadContainer.updateTransaction(form.get('transactionId').value, this.Transaction)
@@ -180,6 +180,7 @@ export class LoadContainerComponent implements OnInit {
     this.currentId = id;
   }
 
+  /*
   getForm(id: any): Promise<any> {
 
     return this.serviceLoadContainer.getTransaction(id)
@@ -189,8 +190,8 @@ export class LoadContainerComponent implements OnInit {
       const formObject = {
         'containerId': null,
         'shipment': null,
-        'transactionId': null,
-        'timestamp': null
+        'weight':null,
+        'type':null
       };
 
       if (result.containerId) {
@@ -205,17 +206,20 @@ export class LoadContainerComponent implements OnInit {
         formObject.shipment = null;
       }
 
-      if (result.transactionId) {
-        formObject.transactionId = result.transactionId;
+      if (result.weight) {
+        formObject.weight = result.weight;
       } else {
-        formObject.transactionId = null;
+        formObject.weight = null;
       }
 
-      if (result.timestamp) {
-        formObject.timestamp = result.timestamp;
+      
+      if (result.type) {
+        formObject.type = result.type;
       } else {
-        formObject.timestamp = null;
+        formObject.type = null;
       }
+
+     
 
       this.myForm.setValue(formObject);
 
@@ -231,12 +235,12 @@ export class LoadContainerComponent implements OnInit {
     });
   }
 
+  */
+
   resetForm(): void {
     this.myForm.setValue({
-      'containerId': null,
-      'shipment': null,
-      'transactionId': null,
-      'timestamp': null
+      'weight':null,
+      'type': null
     });
   }
 }

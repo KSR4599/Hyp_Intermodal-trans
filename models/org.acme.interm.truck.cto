@@ -10,6 +10,7 @@ asset Truck identified by truckId {
   o Integer totalFragileWeight default=0
   o Integer containersAlloted
   --> Container[] containersLoaded optional
+  o   String  schedule
 }
 
 enum Ownership {

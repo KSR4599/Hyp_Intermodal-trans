@@ -19,6 +19,9 @@ import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import 'rxjs/add/operator/toPromise';
 import { MatDialog } from '@angular/material';
 import { addContainerComponent } from './addContainer.component';
+import { CreateContainerComponent } from '../CreateContainer/CreateContainer.component';
+import { LoadContainerComponent } from '../LoadContainer/LoadContainer.component';
+import { readyContainerComponent } from '../readyContainer/readyContainer.component';
 
 
 @Component({
@@ -53,7 +56,7 @@ export class ContainerComponent implements OnInit {
  
   dataSource = {};
 
-  constructor(public serviceContainer: ContainerService, fb: FormBuilder,private dialog: MatDialog) {
+  constructor(public serviceContainer: ContainerService, fb: FormBuilder,private dialog: MatDialog, private dialog1: MatDialog,private dialog2: MatDialog) {
     this.myForm = fb.group({
       containerId: this.containerId,
       containerNumber: this.containerNumber,
@@ -74,17 +77,54 @@ export class ContainerComponent implements OnInit {
 
  openDialog() {
 
-  const dialogRef = this.dialog.open(addContainerComponent, {
+  const dialogRef = this.dialog.open(CreateContainerComponent, {
      
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      console.log('The addContainer was closed');
      
     });
     
    
   }
+
+  openDialog1(containerId) {
+
+    console.log("Passed Container Id",containerId);
+    const dialogRef1 = this.dialog1.open(LoadContainerComponent, {
+    
+      data: {
+        containerId: containerId
+      }
+      });
+  
+      dialogRef1.afterClosed().subscribe(result => {
+        console.log('The addShipment was closed');
+       
+      });
+      
+     
+    }
+
+
+    openDialog2(containerId) {
+
+      console.log("Passed Container Id in readyContainer",containerId);
+      const dialogRef2 = this.dialog2.open(readyContainerComponent, {
+      
+        data: {
+          containerId: containerId
+        }
+        });
+    
+        dialogRef2.afterClosed().subscribe(result => {
+          console.log('The readyContainer was closed');
+         
+        });
+        
+       
+      }
 
 
   loadAll(): Promise<any> {

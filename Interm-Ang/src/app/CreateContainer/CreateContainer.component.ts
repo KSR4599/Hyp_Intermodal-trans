@@ -36,18 +36,14 @@ export class CreateContainerComponent implements OnInit {
   origin = new FormControl('', Validators.required);
   destination = new FormControl('', Validators.required);
   schedule = new FormControl('', Validators.required);
-  transactionId = new FormControl('', Validators.required);
-  timestamp = new FormControl('', Validators.required);
-
+  
 
   constructor(private serviceCreateContainer: CreateContainerService, fb: FormBuilder) {
     this.myForm = fb.group({
       containerNumber: this.containerNumber,
       origin: this.origin,
       destination: this.destination,
-      schedule: this.schedule,
-      transactionId: this.transactionId,
-      timestamp: this.timestamp
+      schedule: this.schedule
     });
   };
 
@@ -108,31 +104,26 @@ export class CreateContainerComponent implements OnInit {
       'containerNumber': this.containerNumber.value,
       'origin': this.origin.value,
       'destination': this.destination.value,
-      'schedule': this.schedule.value,
-      'transactionId': this.transactionId.value,
-      'timestamp': this.timestamp.value
+      'schedule': this.schedule.value
     };
 
     this.myForm.setValue({
       'containerNumber': null,
       'origin': null,
       'destination': null,
-      'schedule': null,
-      'transactionId': null,
-      'timestamp': null
+      'schedule': null
     });
 
     return this.serviceCreateContainer.addTransaction(this.Transaction)
     .toPromise()
     .then(() => {
+      console.log("Container Added Successfully")
       this.errorMessage = null;
       this.myForm.setValue({
         'containerNumber': null,
         'origin': null,
         'destination': null,
-        'schedule': null,
-        'transactionId': null,
-        'timestamp': null
+        'schedule': null
       });
     })
     .catch((error) => {
@@ -150,8 +141,7 @@ export class CreateContainerComponent implements OnInit {
       'containerNumber': this.containerNumber.value,
       'origin': this.origin.value,
       'destination': this.destination.value,
-      'schedule': this.schedule.value,
-      'timestamp': this.timestamp.value
+      'schedule': this.schedule.value
     };
 
     return this.serviceCreateContainer.updateTransaction(form.get('transactionId').value, this.Transaction)
@@ -202,9 +192,7 @@ export class CreateContainerComponent implements OnInit {
         'containerNumber': null,
         'origin': null,
         'destination': null,
-        'schedule': null,
-        'transactionId': null,
-        'timestamp': null
+        'schedule': null
       };
 
       if (result.containerNumber) {
@@ -231,17 +219,7 @@ export class CreateContainerComponent implements OnInit {
         formObject.schedule = null;
       }
 
-      if (result.transactionId) {
-        formObject.transactionId = result.transactionId;
-      } else {
-        formObject.transactionId = null;
-      }
-
-      if (result.timestamp) {
-        formObject.timestamp = result.timestamp;
-      } else {
-        formObject.timestamp = null;
-      }
+      
 
       this.myForm.setValue(formObject);
 
@@ -262,9 +240,7 @@ export class CreateContainerComponent implements OnInit {
       'containerNumber': null,
       'origin': null,
       'destination': null,
-      'schedule': null,
-      'transactionId': null,
-      'timestamp': null
+      'schedule': null
     });
   }
 }

@@ -35,8 +35,7 @@ export class addTruckComponent implements OnInit {
   truckId = new FormControl('', Validators.required);
   normalWeight = new FormControl('', Validators.required);
   fragileWeight = new FormControl('', Validators.required);
-  transactionId = new FormControl('', Validators.required);
-  timestamp = new FormControl('', Validators.required);
+  schedule = new FormControl('', Validators.required);
 
 
   constructor(private serviceaddTruck: addTruckService, fb: FormBuilder) {
@@ -44,8 +43,7 @@ export class addTruckComponent implements OnInit {
       truckId: this.truckId,
       normalWeight: this.normalWeight,
       fragileWeight: this.fragileWeight,
-      transactionId: this.transactionId,
-      timestamp: this.timestamp
+      schedule: this. schedule
     });
   };
 
@@ -106,28 +104,26 @@ export class addTruckComponent implements OnInit {
       'truckId': this.truckId.value,
       'normalWeight': this.normalWeight.value,
       'fragileWeight': this.fragileWeight.value,
-      'transactionId': this.transactionId.value,
-      'timestamp': this.timestamp.value
+      'schedule': this.schedule.value
     };
 
     this.myForm.setValue({
       'truckId': null,
       'normalWeight': null,
       'fragileWeight': null,
-      'transactionId': null,
-      'timestamp': null
+      'schedule': null
     });
 
     return this.serviceaddTruck.addTransaction(this.Transaction)
     .toPromise()
     .then(() => {
+      console.log("Truck Added Succesfully!");
       this.errorMessage = null;
       this.myForm.setValue({
         'truckId': null,
         'normalWeight': null,
         'fragileWeight': null,
-        'transactionId': null,
-        'timestamp': null
+        'schedule': null
       });
     })
     .catch((error) => {
@@ -145,7 +141,7 @@ export class addTruckComponent implements OnInit {
       'truckId': this.truckId.value,
       'normalWeight': this.normalWeight.value,
       'fragileWeight': this.fragileWeight.value,
-      'timestamp': this.timestamp.value
+      'schedule':this.schedule.value
     };
 
     return this.serviceaddTruck.updateTransaction(form.get('transactionId').value, this.Transaction)
@@ -196,8 +192,7 @@ export class addTruckComponent implements OnInit {
         'truckId': null,
         'normalWeight': null,
         'fragileWeight': null,
-        'transactionId': null,
-        'timestamp': null
+        'schedule':null
       };
 
       if (result.truckId) {
@@ -218,18 +213,7 @@ export class addTruckComponent implements OnInit {
         formObject.fragileWeight = null;
       }
 
-      if (result.transactionId) {
-        formObject.transactionId = result.transactionId;
-      } else {
-        formObject.transactionId = null;
-      }
-
-      if (result.timestamp) {
-        formObject.timestamp = result.timestamp;
-      } else {
-        formObject.timestamp = null;
-      }
-
+   
       this.myForm.setValue(formObject);
 
     })
@@ -249,8 +233,7 @@ export class addTruckComponent implements OnInit {
       'truckId': null,
       'normalWeight': null,
       'fragileWeight': null,
-      'transactionId': null,
-      'timestamp': null
+      'schedule': null
     });
   }
 }
