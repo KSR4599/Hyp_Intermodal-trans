@@ -21,7 +21,9 @@ import {
   MatPaginatorModule,
   MatTooltipModule,
   MatRadioModule,
-  MatChipsModule
+  MatChipsModule,
+  MatStepperModule
+
 } from '@angular/material';
 
 @NgModule({
@@ -47,7 +49,8 @@ import {
     MatPaginatorModule,
     MatTooltipModule,
     MatRadioModule,
-    MatChipsModule
+    MatChipsModule,
+    MatStepperModule
   ],
   exports: [
     MatButtonModule,
@@ -71,7 +74,8 @@ import {
     MatPaginatorModule,
     MatTooltipModule,
     MatRadioModule,
-    MatChipsModule
+    MatChipsModule,
+    MatStepperModule
   ]
 })
 export class MaterialModule {}

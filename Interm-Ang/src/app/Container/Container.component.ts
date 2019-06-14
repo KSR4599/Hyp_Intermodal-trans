@@ -22,6 +22,8 @@ import { addContainerComponent } from './addContainer.component';
 import { CreateContainerComponent } from '../CreateContainer/CreateContainer.component';
 import { LoadContainerComponent } from '../LoadContainer/LoadContainer.component';
 import { readyContainerComponent } from '../readyContainer/readyContainer.component';
+import { AssignTruckComponent } from '../AssignTruck/AssignTruck.component';
+import { ClearContainerComponent } from '../ClearContainer/ClearContainer.component';
 
 
 @Component({
@@ -56,7 +58,7 @@ export class ContainerComponent implements OnInit {
  
   dataSource = {};
 
-  constructor(public serviceContainer: ContainerService, fb: FormBuilder,private dialog: MatDialog, private dialog1: MatDialog,private dialog2: MatDialog) {
+  constructor(public serviceContainer: ContainerService, fb: FormBuilder,private dialog: MatDialog, private dialog1: MatDialog,private dialog2: MatDialog, private dialog3: MatDialog, private dialog4: MatDialog ) {
     this.myForm = fb.group({
       containerId: this.containerId,
       containerNumber: this.containerNumber,
@@ -125,6 +127,44 @@ export class ContainerComponent implements OnInit {
         
        
       }
+
+
+      openDialog3(containerId) {
+
+        console.log("Passed Container Id in assign truck",containerId);
+        const dialogRef3 = this.dialog3.open(AssignTruckComponent, {
+        
+          data: {
+            containerId: containerId
+          }
+          });
+      
+          dialogRef3.afterClosed().subscribe(result => {
+            console.log('The assign truck was closed');
+           
+          });
+          
+         
+        }
+
+
+        openDialog4(containerId) {
+
+          console.log("Passed Container Id in clear container",containerId);
+          const dialogRef4 = this.dialog4.open(ClearContainerComponent, {
+          
+            data: {
+              containerId: containerId
+            }
+            });
+        
+            dialogRef4.afterClosed().subscribe(result => {
+              console.log('The clear truck was closed');
+             
+            });
+            
+           
+          }
 
 
   loadAll(): Promise<any> {

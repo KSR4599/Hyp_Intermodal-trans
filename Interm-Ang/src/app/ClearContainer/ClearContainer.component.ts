@@ -12,10 +12,11 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ClearContainerService } from './ClearContainer.service';
 import 'rxjs/add/operator/toPromise';
+import { MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-clearcontainer',
@@ -32,16 +33,11 @@ export class ClearContainerComponent implements OnInit {
   private currentId;
   private errorMessage;
 
-  containerId = new FormControl('', Validators.required);
-  transactionId = new FormControl('', Validators.required);
-  timestamp = new FormControl('', Validators.required);
 
 
-  constructor(private serviceClearContainer: ClearContainerService, fb: FormBuilder) {
+  constructor(private serviceClearContainer: ClearContainerService, fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public passedData: any) {
     this.myForm = fb.group({
-      containerId: this.containerId,
-      transactionId: this.transactionId,
-      timestamp: this.timestamp
+     
     });
   };
 
@@ -99,15 +95,12 @@ export class ClearContainerComponent implements OnInit {
   addTransaction(form: any): Promise<any> {
     this.Transaction = {
       $class: 'org.acme.interm.container.ClearContainer',
-      'containerId': this.containerId.value,
-      'transactionId': this.transactionId.value,
-      'timestamp': this.timestamp.value
+      'containerId': this.passedData.containerId
+      
     };
 
     this.myForm.setValue({
-      'containerId': null,
-      'transactionId': null,
-      'timestamp': null
+      
     });
 
     return this.serviceClearContainer.addTransaction(this.Transaction)
@@ -115,9 +108,7 @@ export class ClearContainerComponent implements OnInit {
     .then(() => {
       this.errorMessage = null;
       this.myForm.setValue({
-        'containerId': null,
-        'transactionId': null,
-        'timestamp': null
+       
       });
     })
     .catch((error) => {
@@ -132,8 +123,8 @@ export class ClearContainerComponent implements OnInit {
   updateTransaction(form: any): Promise<any> {
     this.Transaction = {
       $class: 'org.acme.interm.container.ClearContainer',
-      'containerId': this.containerId.value,
-      'timestamp': this.timestamp.value
+      'containerId': this.passedData.containerId
+      
     };
 
     return this.serviceClearContainer.updateTransaction(form.get('transactionId').value, this.Transaction)
@@ -181,29 +172,10 @@ export class ClearContainerComponent implements OnInit {
     .then((result) => {
       this.errorMessage = null;
       const formObject = {
-        'containerId': null,
-        'transactionId': null,
-        'timestamp': null
+       
       };
 
-      if (result.containerId) {
-        formObject.containerId = result.containerId;
-      } else {
-        formObject.containerId = null;
-      }
-
-      if (result.transactionId) {
-        formObject.transactionId = result.transactionId;
-      } else {
-        formObject.transactionId = null;
-      }
-
-      if (result.timestamp) {
-        formObject.timestamp = result.timestamp;
-      } else {
-        formObject.timestamp = null;
-      }
-
+     
       this.myForm.setValue(formObject);
 
     })
@@ -220,9 +192,7 @@ export class ClearContainerComponent implements OnInit {
 
   resetForm(): void {
     this.myForm.setValue({
-      'containerId': null,
-      'transactionId': null,
-      'timestamp': null
+      
     });
   }
 }

@@ -12,9 +12,10 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject} from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { AssignTruckService } from './AssignTruck.service';
+import { MAT_DIALOG_DATA } from '@angular/material';
 import 'rxjs/add/operator/toPromise';
 
 @Component({
@@ -32,18 +33,14 @@ export class AssignTruckComponent implements OnInit {
   private currentId;
   private errorMessage;
 
-  containerId = new FormControl('', Validators.required);
+
   truckId = new FormControl('', Validators.required);
-  transactionId = new FormControl('', Validators.required);
-  timestamp = new FormControl('', Validators.required);
+ 
 
 
-  constructor(private serviceAssignTruck: AssignTruckService, fb: FormBuilder) {
+  constructor(private serviceAssignTruck: AssignTruckService, fb: FormBuilder,  @Inject(MAT_DIALOG_DATA) public passedData: any) {
     this.myForm = fb.group({
-      containerId: this.containerId,
-      truckId: this.truckId,
-      transactionId: this.transactionId,
-      timestamp: this.timestamp
+      truckId: this.truckId
     });
   };
 
@@ -100,18 +97,13 @@ export class AssignTruckComponent implements OnInit {
 
   addTransaction(form: any): Promise<any> {
     this.Transaction = {
-      $class: 'org.acme.interm.container.AssignTruck',
-      'containerId': this.containerId.value,
+      $class: 'org.acme.interm.container.AssignTruck',   
       'truckId': this.truckId.value,
-      'transactionId': this.transactionId.value,
-      'timestamp': this.timestamp.value
+      'containerId': this.passedData.containerId
     };
 
-    this.myForm.setValue({
-      'containerId': null,
-      'truckId': null,
-      'transactionId': null,
-      'timestamp': null
+    this.myForm.setValue({  
+      'truckId': null 
     });
 
     return this.serviceAssignTruck.addTransaction(this.Transaction)
@@ -119,10 +111,7 @@ export class AssignTruckComponent implements OnInit {
     .then(() => {
       this.errorMessage = null;
       this.myForm.setValue({
-        'containerId': null,
-        'truckId': null,
-        'transactionId': null,
-        'timestamp': null
+        'truckId': null
       });
     })
     .catch((error) => {
@@ -137,9 +126,9 @@ export class AssignTruckComponent implements OnInit {
   updateTransaction(form: any): Promise<any> {
     this.Transaction = {
       $class: 'org.acme.interm.container.AssignTruck',
-      'containerId': this.containerId.value,
-      'truckId': this.truckId.value,
-      'timestamp': this.timestamp.value
+      'containerId': this.passedData.containerId,
+      'truckId': this.truckId.value
+
     };
 
     return this.serviceAssignTruck.updateTransaction(form.get('transactionId').value, this.Transaction)
@@ -187,35 +176,18 @@ export class AssignTruckComponent implements OnInit {
     .then((result) => {
       this.errorMessage = null;
       const formObject = {
-        'containerId': null,
-        'truckId': null,
-        'transactionId': null,
-        'timestamp': null
+
+        'truckId': null
+   
       };
 
-      if (result.containerId) {
-        formObject.containerId = result.containerId;
-      } else {
-        formObject.containerId = null;
-      }
-
+      
       if (result.truckId) {
         formObject.truckId = result.truckId;
       } else {
         formObject.truckId = null;
       }
 
-      if (result.transactionId) {
-        formObject.transactionId = result.transactionId;
-      } else {
-        formObject.transactionId = null;
-      }
-
-      if (result.timestamp) {
-        formObject.timestamp = result.timestamp;
-      } else {
-        formObject.timestamp = null;
-      }
 
       this.myForm.setValue(formObject);
 
@@ -233,10 +205,7 @@ export class AssignTruckComponent implements OnInit {
 
   resetForm(): void {
     this.myForm.setValue({
-      'containerId': null,
-      'truckId': null,
-      'transactionId': null,
-      'timestamp': null
+      'truckId': null
     });
   }
 }

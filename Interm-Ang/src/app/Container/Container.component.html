@@ -8,10 +8,20 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.2/css/mdb.min.css" rel="stylesheet">
 
   </head>
-<h1>Containers Here</h1>
-<br><br>
-<button mat-raised-button color="primary" (click)="openDialog()">Add Container</button>
-<br><br>
+<br><br><br>
+
+<ul>
+
+    <li><a (click)="openDialog()"><i class="fa fa-server" aria-hidden="true"></i></a></li>
+
+  
+    </ul>
+
+
+<br><br><br><br><br><br>
+
+
+
 
                     <table class="table">
                         <thead>
@@ -74,11 +84,17 @@
 
 
 
-                                <button mat-button color="primary" matTooltip="Assign Truck">
+                                <button mat-button color="primary" matTooltip="Assign Truck" (click)="openDialog3(asset.containerId)">
                                     <mat-icon>local_shipping</mat-icon>
                                     
                                 </button>
 
+                                <button mat-button color="primary" matTooltip="Clear Container" (click)="openDialog4(asset.containerId)">
+                                  <mat-icon>layers_clear</mat-icon>
+                                  
+                              </button>
+
+                               
                               
 
                               </tr>
