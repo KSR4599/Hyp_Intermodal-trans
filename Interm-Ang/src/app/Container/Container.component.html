@@ -7,45 +7,71 @@
 <!-- Material Design Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.2/css/mdb.min.css" rel="stylesheet">
 
-  </head>
-<br><br><br>
+<link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Raleway&display=swap" rel="stylesheet">
 
+  </head>
+
+  <!--
+
+    
+  -->
+  <div align="center">
+ <h1 style="color:purple">Container Management</h1>
+  </div>
+
+
+
+
+<img src="https://i.imgur.com/4EHno3i.png">
+
+ <!--
 <ul>
 
-    <li><a (click)="openDialog()"><i class="fa fa-server" aria-hidden="true"></i></a></li>
+    <li><a (click)="openDialog()"><i class="fa fa-server" aria-hidden="true"><img src="http://www.clker.com/cliparts/H/D/e/R/O/P/green-plus-sign-hi.png" height="25" width="25"></i></a></li>
 
   
     </ul>
 
-
-<br><br><br><br><br><br>
-
-
+-->
+<a><div class="example-2" (click)="openDialog()">ADD CONTAINER<mat-icon aria-hidden="false" aria-label="Example home icon">add_box</mat-icon></div></a>
+    <br>
+  
+    <!--   
+      
+      <div align="center">
+        <p><b> ADD CONTAINER </b>
+      
+            <mat-icon matBadge="+" matBadgeColor="warn">view_compact</mat-icon>
+          </p>
+         
+    </div>
+  -->
+ 
 
 
                     <table class="table">
                         <thead>
                           <tr>
-                              <th class="info">containerId</th>
+                              <th class="info">Container ID</th>
             
-                              <th class="info">containerNumber</th>
+                              <th class="info">Container Number</th>
                           
-                              <th class="info">normalWeight</th>
+                              <th class="info">Normal Weight</th>
                           
-                              <th class="info">fragileWeight</th>
+                              <th class="info">Fragile Weight</th>
                           
-                              <th class="info">allShipments</th>
+                              <th class="info">Shipments Loaded</th>
                           
-                              <th class="info">origin</th>
+                              <th class="info">Origin</th>
               
                               
-                              <th class="info">destination</th>
+                              <th class="info">Destination</th>
                           
-                              <th class="info">truck</th>
+                              <th class="info">Truck</th>
                           
-                              <th class="info">readyToLoad</th>
+                              <th class="info">Load Status</th>
                           
-                              <th class="info">status</th>
+                              <th class="info">Delivery Status</th>
                           </tr>
                         </thead>
                         <tbody>
