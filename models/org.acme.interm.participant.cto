@@ -1,6 +1,6 @@
 namespace  org.acme.interm.participant
 
-abstract participant ACMEParticipant identified by participantKey {
+abstract participant INTERMParticipant identified by participantKey {
   o String          participantKey
   o Contact         contact
 }
@@ -11,15 +11,15 @@ concept Contact {
   o String email
 }
 
-participant ACMENetworkAdmin extends ACMEParticipant {
+participant TruckAdmin extends INTERMParticipant {
   /** This is a concrete resource definition */
 }
 
-participant ACMEPersonnel extends ACMEParticipant {
-  o String  department
+participant ContainerAdmin extends INTERMParticipant {
+  
 }
 
-participant B2BPartner extends ACMEParticipant {
+participant B2BPartner extends INTERMParticipant {
   /** Additional Attributes */
   
 }

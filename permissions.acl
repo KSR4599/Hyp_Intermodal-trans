@@ -1,0 +1,54 @@
+/**
+ * TOP TO BOTTOM APPROACH!
+ */
+rule TruckAdmin {
+  description: "Allow TruckAdmin to play around with only trucks"
+  participant: "org.acme.interm.participant.TruckAdmin"
+  operation: ALL
+  resource: "org.acme.interm.container.*"
+  action: DENY
+}
+
+rule ContainerAdmin {
+  description: "Allow ContainerAdmin to play around with only containers"
+  participant: "org.acme.interm.participant.ContainerAdmin"
+  operation: ALL
+  resource: "org.acme.interm.truck.*"
+  action: DENY
+}
+  
+
+
+ rule Default {
+     description: "Allow all participants access to all resources"
+     participant: "org.hyperledger.composer.system.Participant"
+     operation: READ
+     resource: "org.acme.interm.**"
+     action: ALLOW
+ }
+
+
+rule SystemACL {
+  description: "All access - grant everything to everybody"
+  participant: "org.hyperledger.composer.system.Participant"
+  operation: READ
+  resource: "org.hyperledger.composer.system.**"
+  action: ALLOW
+}
+
+
+rule NetworkAdminUser {
+  description: "Grant BNA's full access to USER resources"
+  participant: "org.hyperledger.composer.system.NetworkAdmin"
+  operation: ALL
+  resource: "**"
+  action: ALLOW
+}
+
+rule NetworkAdminSystem {
+  description: "Grant BNA's full access to SYSTEM resources"
+  participant: "org.hyperledger.composer.system.NetworkAdmin"
+  operation: ALL
+  resource: "org.hyperledger.composer.system.**"
+  action: ALLOW
+}
