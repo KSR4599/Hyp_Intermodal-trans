@@ -56,16 +56,7 @@ event ContainerCreated {
 // Assigns an aircraft to the flight
 // The logistics / validation on availability of aircraft
 // Kept outside of the Blockchain
-transaction AssignTruck {
-  o   String    containerId
-  o   String    truckId
-}
 
-// Event indicating that aircraft was assigned
-event TruckAssigned {
-  o   String    containerId
-  o   String    truckId
-}
 
 transaction ClearContainer {
   o String containerId
@@ -90,16 +81,6 @@ o Integer fragileWeight
 o Integer normalWeight
 }
 
-transaction addTruck {
-  o String truckId
-  o Integer normalWeight
-  o Integer fragileWeight
-  o String schedule
-}
-
-event TruckCreated {
-  o String TruckId
-}
 
 
 transaction getContainer {

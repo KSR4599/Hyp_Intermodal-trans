@@ -21,3 +21,27 @@ enum Ownership {
   transaction truckDetails {
   o   String    truckId
 }
+  
+  
+  transaction AssignTruck {
+  o   String    containerId
+  o   String    truckId
+}
+
+// Event indicating that aircraft was assigned
+event TruckAssigned {
+  o   String    containerId
+  o   String    truckId
+}
+  
+  
+  transaction addTruck {
+  o String truckId
+  o Integer normalWeight
+  o Integer fragileWeight
+  o String schedule
+}
+
+event TruckCreated {
+  o String TruckId
+}
