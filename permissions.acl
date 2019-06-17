@@ -1,22 +1,72 @@
 /**
  * TOP TO BOTTOM APPROACH!
  */
+
 rule TruckAdmin {
   description: "Allow TruckAdmin to play around with only trucks"
   participant: "org.acme.interm.participant.TruckAdmin"
-  operation: ALL
+  operation: CREATE, DELETE
   resource: "org.acme.interm.container.*"
   action: DENY
+}
+
+rule TruckAdminAssignTruckAllow {
+  description: "Allow TruckAdmin to assign truck"
+  participant: "org.acme.interm.participant.TruckAdmin"
+  operation: UPDATE
+  resource: "org.acme.interm.container.*"
+  action: ALLOW
+}
+
+rule ContainerAdminAssignClearContainer {
+  description: "Allow ContainerAdmin to clear container"
+  participant: "org.acme.interm.participant.ContainerAdmin"
+  operation: UPDATE
+  resource: "org.acme.interm.truck.*"
+  action: ALLOW
+}
+
+rule TruckAdminAllow {
+  description: "Allow TruckAdmin to play around with only trucks"
+  participant: "org.acme.interm.participant.TruckAdmin"
+  operation: ALL
+  resource: "org.acme.interm.truck.*"
+  action: ALLOW
 }
 
 rule ContainerAdmin {
   description: "Allow ContainerAdmin to play around with only containers"
   participant: "org.acme.interm.participant.ContainerAdmin"
-  operation: ALL
+  operation: CREATE, UPDATE, DELETE
   resource: "org.acme.interm.truck.*"
   action: DENY
 }
   
+rule ContainerAdminAllow {
+  description: "Allow ContainerAdmin to play around with only containers"
+  participant: "org.acme.interm.participant.ContainerAdmin"
+  operation: ALL
+  resource: "org.acme.interm.container.*"
+  action: ALLOW
+}
+  
+rule TruckAdminHistorian {
+  description: "Allow TruckAdmin to play around Historian Record"
+  participant: "org.acme.interm.participant.TruckAdmin"
+  operation: ALL
+  resource: "org.hyperledger.composer.system.HistorianRecord"
+  action: ALLOW
+}
+
+rule ContainerAdminHistorian {
+  description: "Allow TruckAdmin to play around Historian Record"
+  participant: "org.acme.interm.participant.ContainerAdmin"
+  operation: ALL
+  resource: "org.hyperledger.composer.system.HistorianRecord"
+  action: ALLOW
+}
+
+
 
 
  rule Default {
@@ -52,3 +102,6 @@ rule NetworkAdminSystem {
   resource: "org.hyperledger.composer.system.**"
   action: ALLOW
 }
+
+
+ 
