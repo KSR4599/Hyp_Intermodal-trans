@@ -58,6 +58,15 @@ rule AdminHistorian {
   action: ALLOW
 }
 
+rule DeleteResource{
+  description: "Allow TruckAdmin to play around Historian Record"
+  participant: "org.acme.interm.participant.*"
+  operation: ALL
+  resource: "org.hyperledger.composer.system.RemoveAsset"
+  action: ALLOW
+}
+
+
 
  rule Default {
      description: "Allow all participants access to all resources"

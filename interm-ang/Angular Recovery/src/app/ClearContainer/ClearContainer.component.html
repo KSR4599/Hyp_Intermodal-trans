@@ -2,13 +2,19 @@
 
 
       <form [formGroup]="myForm">
-        
-
+                   
+<br>
+        <div align="center" height="60" width="60">
+                  <mat-spinner [diameter]="63" *ngIf = "spinner == 'aa'"></mat-spinner>  
+              </div>
        
-            
-        <br>   
-        <button mat-button data-dismiss="modal"  [mat-dialog-close]="true">No thanks</button>
-            <button mat-button (click)="addTransaction(myForm);" type="submit"  data-dismiss="modal"  [mat-dialog-close]="true">Confirm</button>
+
+        <p style="color: red">{{errorMessage}}</p>
+<p style="color: green">{{successMessage}}</p>
+
+<br>
+<div align="center">   <button mat-button (click)="addTransaction(myForm);" type="submit"  data-dismiss="modal">Confirm</button></div>
+         
         
       </form>
    

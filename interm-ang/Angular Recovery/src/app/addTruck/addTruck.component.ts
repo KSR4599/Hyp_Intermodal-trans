@@ -30,7 +30,9 @@ export class addTruckComponent implements OnInit {
   private allTransactions;
   private Transaction;
   private currentId;
-  private errorMessage;
+  public errorMessage ='';
+  public successMessage='';
+  public spinner = '';
 
   truckId = new FormControl('', Validators.required);
   normalWeight = new FormControl('', Validators.required);
@@ -99,6 +101,7 @@ export class addTruckComponent implements OnInit {
   }
 
   addTransaction(form: any): Promise<any> {
+    this.spinner = 'aa';
     this.Transaction = {
       $class: 'org.acme.interm.truck.addTruck',
       'truckId': this.truckId.value,
@@ -125,12 +128,15 @@ export class addTruckComponent implements OnInit {
         'fragileWeight': null,
         'schedule': null
       });
+      this.spinner = '';
+      this.successMessage= 'Truck Added Successfulyy!👍';
     })
     .catch((error) => {
       if (error === 'Server error') {
         this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
       } else {
-        this.errorMessage = error;
+        this.spinner = '';
+        this.errorMessage = 'This operation cannot be performed! 👎';
       }
     });
   }

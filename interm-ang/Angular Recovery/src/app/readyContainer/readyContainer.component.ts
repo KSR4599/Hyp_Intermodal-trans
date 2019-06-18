@@ -31,8 +31,9 @@ export class readyContainerComponent implements OnInit {
   private allTransactions;
   private Transaction;
   private currentId;
-  private errorMessage;
-
+  public errorMessage ='';
+  public successMessage='';
+  public spinner = '';
 
 
 
@@ -94,6 +95,7 @@ export class readyContainerComponent implements OnInit {
   }
 
   addTransaction(form: any): Promise<any> {
+    this.spinner = 'aa';
     this.Transaction = {
       $class: 'org.acme.interm.container.readyContainer',
       'containerId': this.passedData.containerId
@@ -111,12 +113,15 @@ export class readyContainerComponent implements OnInit {
       this.myForm.setValue({
   
       });
+      this.spinner = '';
+      this.successMessage= 'Container is ready to load now!👍';
     })
     .catch((error) => {
       if (error === 'Server error') {
         this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
       } else {
-        this.errorMessage = error;
+        this.spinner = '';
+        this.errorMessage = 'This operation cannot be performed! 👎';
       }
     });
   }

@@ -35,13 +35,18 @@
                 </div>
 
 
-            
+                <div align="center" height="60" width="60">
+                    <mat-spinner [diameter]="63" *ngIf = "spinner == 'aa'"></mat-spinner>  
+                </div>
+
+                <p style="color: red">{{errorMessage}}</p>
+                <p style="color: green">{{successMessage}}</p>
           
 
         </div>
-        <div class="modal-footer">
+      <div align="center"><button mat-button (click)="addTransaction(myForm);" type="submit"  data-dismiss="modal" >Confirm</button></div>
             
-            <button mat-button (click)="addTransaction(myForm);" type="submit"  data-dismiss="modal"  [mat-dialog-close]="true">Confirm</button>
-        </div>
+            
+      
       </form>
    
