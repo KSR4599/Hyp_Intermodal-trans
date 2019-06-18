@@ -97,7 +97,7 @@ export class AssignTruckComponent implements OnInit {
 
   addTransaction(form: any): Promise<any> {
     this.Transaction = {
-      $class: 'org.acme.interm.container.AssignTruck',   
+      $class: 'org.acme.interm.truck.AssignTruck',   
       'truckId': this.truckId.value,
       'containerId': this.passedData.containerId
     };
@@ -125,7 +125,7 @@ export class AssignTruckComponent implements OnInit {
 
   updateTransaction(form: any): Promise<any> {
     this.Transaction = {
-      $class: 'org.acme.interm.container.AssignTruck',
+      $class: 'org.acme.interm.truck.AssignTruck',
       'containerId': this.passedData.containerId,
       'truckId': this.truckId.value
 

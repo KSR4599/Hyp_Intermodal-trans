@@ -32,6 +32,7 @@ import { addTruckComponent } from './addTruck/addTruck.component';
 import { getContainerComponent } from './getContainer/getContainer.component';
 import { readyContainerComponent } from './readyContainer/readyContainer.component';
 import { truckDetailsComponent } from './truckDetails/truckDetails.component';
+import { WalletComponent } from './wallet/wallet.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -48,6 +49,7 @@ const routes: Routes = [
   { path: 'getContainer', component: getContainerComponent },
   { path: 'readyContainer', component: readyContainerComponent },
   { path: 'truckDetails', component: truckDetailsComponent },
+  {path: 'wallet', component: WalletComponent },
   { path: '**', redirectTo: '' }
 ];
 

@@ -100,7 +100,7 @@ export class addTruckComponent implements OnInit {
 
   addTransaction(form: any): Promise<any> {
     this.Transaction = {
-      $class: 'org.acme.interm.container.addTruck',
+      $class: 'org.acme.interm.truck.addTruck',
       'truckId': this.truckId.value,
       'normalWeight': this.normalWeight.value,
       'fragileWeight': this.fragileWeight.value,
@@ -137,7 +137,7 @@ export class addTruckComponent implements OnInit {
 
   updateTransaction(form: any): Promise<any> {
     this.Transaction = {
-      $class: 'org.acme.interm.container.addTruck',
+      $class: 'org.acme.interm.truck.addTruck',
       'truckId': this.truckId.value,
       'normalWeight': this.normalWeight.value,
       'fragileWeight': this.fragileWeight.value,

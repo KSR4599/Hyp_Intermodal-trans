@@ -1,6 +1,6 @@
 {
   "name": "intermm",
-  "version": "0.0.16",
+  "version": "0.0.14",
   "description": "Incremental creation of the ACME model",
   "scripts": {
     "test": "mocha --recursive"
@@ -21,6 +21,8 @@
   },
   "dependencies": {
     "@angular/flex-layout": "^8.0.0-beta.26",
-    "chai": "^4.1.2"
+    "chai": "^4.1.2",
+    "composer-rest-server": "^0.20.8",
+    "node-pre-gyp": "^0.13.0"
   }
 }

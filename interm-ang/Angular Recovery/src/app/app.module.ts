@@ -42,6 +42,8 @@ import { truckDetailsComponent } from './truckDetails/truckDetails.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { addContainerComponent } from './Container/addContainer.component';
+import { WalletComponent } from './wallet/wallet.component';
+import { WalletService } from './wallet/wallet.service';
 
   @NgModule({
   declarations: [
@@ -62,7 +64,8 @@ import { addContainerComponent } from './Container/addContainer.component';
     truckDetailsComponent,
     HeaderComponent,
     SidenavListComponent,
-    addContainerComponent
+    addContainerComponent,
+    WalletComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +78,7 @@ import { addContainerComponent } from './Container/addContainer.component';
     FlexLayoutModule 
   ],
   providers: [
-    DataService
+    DataService, WalletService
   ],
   bootstrap: [AppComponent],
   entryComponents: [addContainerComponent, CreateContainerComponent]

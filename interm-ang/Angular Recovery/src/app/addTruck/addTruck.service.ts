@@ -15,35 +15,35 @@
 import { Injectable } from '@angular/core';
 import { DataService } from '../data.service';
 import { Observable } from 'rxjs/Observable';
-import { AssignTruck } from '../org.acme.interm.container';
+import { addTruck } from '../org.acme.interm.container';
 import 'rxjs/Rx';
 
 // Can be injected into a constructor
 @Injectable()
-export class AssignTruckService {
+export class addTruckService {
 
-  private NAMESPACE = 'org.acme.interm.container.AssignTruck';
+  private NAMESPACE = 'org.acme.interm.truck.addTruck';
 
-  constructor(private dataService: DataService<AssignTruck>) {
+  constructor(private dataService: DataService<addTruck>) {
   };
 
-  public getAll(): Observable<AssignTruck[]> {
+  public getAll(): Observable<addTruck[]> {
       return this.dataService.getAll(this.NAMESPACE);
   }
 
-  public getTransaction(id: any): Observable<AssignTruck> {
+  public getTransaction(id: any): Observable<addTruck> {
     return this.dataService.getSingle(this.NAMESPACE, id);
   }
 
-  public addTransaction(itemToAdd: any): Observable<AssignTruck> {
+  public addTransaction(itemToAdd: any): Observable<addTruck> {
     return this.dataService.add(this.NAMESPACE, itemToAdd);
   }
 
-  public updateTransaction(id: any, itemToUpdate: any): Observable<AssignTruck> {
+  public updateTransaction(id: any, itemToUpdate: any): Observable<addTruck> {
     return this.dataService.update(this.NAMESPACE, id, itemToUpdate);
   }
 
-  public deleteTransaction(id: any): Observable<AssignTruck> {
+  public deleteTransaction(id: any): Observable<addTruck> {
     return this.dataService.delete(this.NAMESPACE, id);
   }
 
