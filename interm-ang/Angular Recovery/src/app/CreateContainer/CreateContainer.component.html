@@ -75,7 +75,9 @@
 
   
 <div align="center">
-    <button mat-raised-button (click)="addTransaction(myForm);" type="submit">Confirm</button>
+    <button mat-raised-button color="primary" (click)="addTransaction(myForm);" type="submit"  data-dismiss="modal" *ngIf="btnStatus">Confirm</button>
+
+    <button mat-fab color="accent" data-dismiss="modal" *ngIf="!btnStatus" [mat-dialog-close]="true">Okay</button>
 </div>
       
  

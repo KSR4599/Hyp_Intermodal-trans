@@ -34,6 +34,7 @@ export class readyContainerComponent implements OnInit {
   public errorMessage ='';
   public successMessage='';
   public spinner = '';
+  public btnStatus = true;
 
 
 
@@ -96,6 +97,7 @@ export class readyContainerComponent implements OnInit {
 
   addTransaction(form: any): Promise<any> {
     this.spinner = 'aa';
+    this.btnStatus = false;
     this.Transaction = {
       $class: 'org.acme.interm.container.readyContainer',
       'containerId': this.passedData.containerId

@@ -44,7 +44,10 @@
                         <thead>
                           <tr>
                               <th class="info">Truck ID</th>
-            
+                              <th class="info">Origin</th>
+              
+                              
+                              <th class="info">Destination</th>
                               <th class="info">Containers Alloted</th>
                           
                               <th class="info">Ownership</th>
@@ -61,6 +64,10 @@
                             <tr mdbTableCol *ngFor="let asset of allAssets">
                       
                                 <td class="asset-properties">{{asset.truckId}}</td>
+
+                                <td class="asset-properties">{{asset.route.origin}}</td>
+                
+                                <td class="asset-properties">{{asset.route.destination}}</td>
                   
                                 <td class="asset-properties">{{asset.containersAlloted}}</td>
                             

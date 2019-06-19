@@ -2,6 +2,15 @@
  * TOP TO BOTTOM APPROACH!
  */
 
+rule DeleteResource{
+  description: "Allow TruckAdmin to play around Historian Record"
+  participant: "org.acme.interm.participant.*"
+  operation: ALL
+  resource: "org.hyperledger.composer.system.RemoveAsset"
+  action: ALLOW
+}
+
+
 rule TruckAdmin {
   description: "Allow TruckAdmin to play around with only trucks"
   participant: "org.acme.interm.participant.TruckAdmin"
@@ -57,15 +66,6 @@ rule AdminHistorian {
   resource: "org.hyperledger.composer.system.HistorianRecord"
   action: ALLOW
 }
-
-rule DeleteResource{
-  description: "Allow TruckAdmin to play around Historian Record"
-  participant: "org.acme.interm.participant.*"
-  operation: ALL
-  resource: "org.hyperledger.composer.system.RemoveAsset"
-  action: ALLOW
-}
-
 
 
  rule Default {

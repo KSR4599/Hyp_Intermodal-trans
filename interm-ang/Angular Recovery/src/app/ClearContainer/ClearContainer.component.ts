@@ -34,6 +34,7 @@ export class ClearContainerComponent implements OnInit {
   public errorMessage ='';
   public successMessage='';
   public spinner = '';
+  public btnStatus = true;
 
 
 
@@ -96,6 +97,7 @@ export class ClearContainerComponent implements OnInit {
 
   addTransaction(form: any): Promise<any> {
     this.spinner = 'aa';
+    this.btnStatus = false;
     this.Transaction = {
       $class: 'org.acme.interm.container.ClearContainer',
       'containerId': this.passedData.containerId

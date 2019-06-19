@@ -5,17 +5,23 @@ import org.acme.interm.container.Container
 
 asset Truck identified by truckId {
   o String truckId          
-  o Ownership ownershipType default="LEASED"
+  o Ownership ownershipType 
   o Integer totalNormalWeight default=0 range = [,600]
   o Integer totalFragileWeight default=0 range = [,400]
   o Integer containersAlloted
   --> Container[] containersLoaded optional
   o   String  schedule
+  o Route route
 }
 
 enum Ownership {
   o   LEASED
   o   OWNED
+}
+  
+  concept Route {
+  o   String    origin       regex=/[A-Z][A-Z][A-Z]/
+  o   String    destination  regex=/[A-Z][A-Z][A-Z]/
 }
 
   transaction truckDetails {
@@ -37,9 +43,12 @@ event TruckAssigned {
   
   transaction addTruck {
   o String truckId
+    o String origin
+  o String destination
   o Integer normalWeight
   o Integer fragileWeight
   o String schedule
+  o Ownership ownership
 }
 
 event TruckCreated {

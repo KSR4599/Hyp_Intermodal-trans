@@ -1,4 +1,4 @@
-    
+
 <h1 mat-dialog-title>Provide the Container Details Below :</h1>
 
 
@@ -16,8 +16,38 @@
               <input formControlName="truckId" type="text" class="form-control">
             
           </div>
+
+          
+          <div fxLayout="row" fxLayoutGap="10px">
+          <div class="form-group text-left">
+            <label for="origin">Origin</label>
+            
+              <input formControlName="origin" type="text" class="form-control">
+            
+          </div>
         
       
+
+        
+          <div class="form-group text-left">
+            <label for="destination">Destination</label>
+            
+              <input formControlName="destination" type="text" class="form-control">
+            
+          </div>
+
+        </div>
+
+          <p><b>Ownership Type :</b></p>
+          <mat-radio-group aria-label="ownershipType" formControlName="ownershipType">
+            <div fxLayout="row" fxLayoutGap="10px">
+                <mat-radio-button value="LEASED">LEASED</mat-radio-button>
+              <br>
+              <mat-radio-button value="OWNED">OWNED</mat-radio-button>
+            </div>
+            
+            </mat-radio-group>
+          
 
         
           <div class="form-group text-left">
@@ -46,10 +76,12 @@
             <mat-datepicker #picker></mat-datepicker>
           </div>
         
-          <div align="center" height="60" width="60">
-              <mat-spinner [diameter]="63" *ngIf = "spinner == 'aa'"></mat-spinner>  
-          </div>
+
    
+          <div align="center" height="60" width="60">
+            <mat-spinner [diameter]="63" *ngIf = "spinner == 'aa'"></mat-spinner>  
+        </div>
+
 
 <p style="color: red">{{errorMessage}}</p>
 <p style="color: green">{{successMessage}}</p>
@@ -60,6 +92,10 @@
  
     <br>
 
-<div align="center">  <button mat-raised-button (click)="addTransaction(myForm);" type="submit"  data-dismiss="modal" >Confirm</button></div>
+    <div align="center">
+        <button mat-raised-button color="primary" (click)="addTransaction(myForm);" type="submit"  data-dismiss="modal" *ngIf="btnStatus">Confirm</button>
+
+        <button mat-fab color="accent" data-dismiss="modal" *ngIf="!btnStatus" [mat-dialog-close]="true">Okay</button>
+    </div>
 
   </form>

@@ -36,6 +36,7 @@ export class LoadContainerComponent implements OnInit {
   public successMessage='';
  private currentContainer;
  public spinner = '';
+ public btnStatus = true;
 
 
   type = new FormControl('', Validators.required);
@@ -106,6 +107,7 @@ export class LoadContainerComponent implements OnInit {
 
   addTransaction(form: any): Promise<any> {
     this.spinner = 'aa';
+    this.btnStatus = false;
     this.Transaction = {
       $class: 'org.acme.interm.container.LoadContainer',
       'containerId': this.passedData.containerId,

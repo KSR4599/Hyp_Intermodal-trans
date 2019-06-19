@@ -33,6 +33,7 @@ export class CreateContainerComponent implements OnInit {
   public errorMessage ='';
   public successMessage='';
   public spinner = '';
+  public btnStatus = true;
 
   containerNumber = new FormControl('', Validators.required);
   origin = new FormControl('', Validators.required);
@@ -102,6 +103,7 @@ export class CreateContainerComponent implements OnInit {
 
   addTransaction(form: any): Promise<any> {
     this.spinner = 'aa';
+    this.btnStatus = false;
     this.Transaction = {
       $class: 'org.acme.interm.container.CreateContainer',
       'containerNumber': this.containerNumber.value,

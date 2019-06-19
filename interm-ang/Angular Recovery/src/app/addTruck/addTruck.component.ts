@@ -33,16 +33,23 @@ export class addTruckComponent implements OnInit {
   public errorMessage ='';
   public successMessage='';
   public spinner = '';
+  public btnStatus = true;
 
   truckId = new FormControl('', Validators.required);
   normalWeight = new FormControl('', Validators.required);
   fragileWeight = new FormControl('', Validators.required);
   schedule = new FormControl('', Validators.required);
+ origin = new FormControl('', Validators.required);
+ destination= new FormControl('', Validators.required);
+ ownershipType = new FormControl('', Validators.required);
 
 
   constructor(private serviceaddTruck: addTruckService, fb: FormBuilder) {
     this.myForm = fb.group({
       truckId: this.truckId,
+      origin: this.origin,
+      destination: this.destination,
+      ownershipType: this.ownershipType,
       normalWeight: this.normalWeight,
       fragileWeight: this.fragileWeight,
       schedule: this. schedule
@@ -102,9 +109,13 @@ export class addTruckComponent implements OnInit {
 
   addTransaction(form: any): Promise<any> {
     this.spinner = 'aa';
+    this.btnStatus = false;
     this.Transaction = {
       $class: 'org.acme.interm.truck.addTruck',
       'truckId': this.truckId.value,
+      'origin': this.origin.value,
+      'destination': this.destination.value,
+      'ownership': this.ownershipType.value,
       'normalWeight': this.normalWeight.value,
       'fragileWeight': this.fragileWeight.value,
       'schedule': this.schedule.value
@@ -112,6 +123,9 @@ export class addTruckComponent implements OnInit {
 
     this.myForm.setValue({
       'truckId': null,
+      'origin': null,
+      'destination':null,
+      'ownershipType':null,
       'normalWeight': null,
       'fragileWeight': null,
       'schedule': null
@@ -124,6 +138,9 @@ export class addTruckComponent implements OnInit {
       this.errorMessage = null;
       this.myForm.setValue({
         'truckId': null,
+        'origin': null,
+        'destination': null,
+        'ownershipType':null,
         'normalWeight': null,
         'fragileWeight': null,
         'schedule': null
@@ -145,6 +162,9 @@ export class addTruckComponent implements OnInit {
     this.Transaction = {
       $class: 'org.acme.interm.truck.addTruck',
       'truckId': this.truckId.value,
+      'origin': this.origin.value,
+      'destination': this.destination.value,
+      'ownership': this.ownershipType,
       'normalWeight': this.normalWeight.value,
       'fragileWeight': this.fragileWeight.value,
       'schedule':this.schedule.value
@@ -188,6 +208,7 @@ export class addTruckComponent implements OnInit {
     this.currentId = id;
   }
 
+  /*
   getForm(id: any): Promise<any> {
 
     return this.serviceaddTruck.getTransaction(id)
@@ -196,6 +217,8 @@ export class addTruckComponent implements OnInit {
       this.errorMessage = null;
       const formObject = {
         'truckId': null,
+        'origin':null,
+        'destination':null,
         'normalWeight': null,
         'fragileWeight': null,
         'schedule':null
@@ -205,6 +228,18 @@ export class addTruckComponent implements OnInit {
         formObject.truckId = result.truckId;
       } else {
         formObject.truckId = null;
+      }
+
+      if (result.origin) {
+        formObject.origin = result.origin;
+      } else {
+        formObject.origin = null;
+      }
+
+      if (result.destination) {
+        formObject.destination = result.destination;
+      } else {
+        formObject.destination = null;
       }
 
       if (result.normalWeight) {
@@ -234,9 +269,13 @@ export class addTruckComponent implements OnInit {
     });
   }
 
+  */
   resetForm(): void {
     this.myForm.setValue({
       'truckId': null,
+      'origin':null,
+      'destination':null,
+      'ownershipType':null,
       'normalWeight': null,
       'fragileWeight': null,
       'schedule': null
