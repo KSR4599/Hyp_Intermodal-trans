@@ -1,0 +1,19 @@
+<form [formGroup]="myForm">
+<h1 mat-dialog-title>Please enter the Pass-key to Proceed 🔑</h1>
+
+        <div class="modal-body">
+            
+                 
+                      <input [(ngModel)] = "password" formControlName="passkey" class="form-control" type="password">
+              <br>
+
+                <p style="color:indigo">{{Msg}}</p>
+          
+
+        </div>
+   
+        <div align="center">
+            <button mat-raised-button color="primary" (click)="logged(myForm);" type="submit"  data-dismiss="modal">Confirm</button>
+
+        </div>
+            </form>

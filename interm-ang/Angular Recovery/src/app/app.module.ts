@@ -44,6 +44,7 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
 import { addContainerComponent } from './Container/addContainer.component';
 import { WalletComponent } from './wallet/wallet.component';
 import { WalletService } from './wallet/wallet.service';
+import { LoginComponent } from './login/login.component';
 
   @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { WalletService } from './wallet/wallet.service';
     HeaderComponent,
     SidenavListComponent,
     addContainerComponent,
-    WalletComponent
+    WalletComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -81,6 +83,6 @@ import { WalletService } from './wallet/wallet.service';
     DataService, WalletService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [addContainerComponent, CreateContainerComponent]
+  entryComponents: [addContainerComponent, CreateContainerComponent, LoginComponent]
 })
 export class AppModule { }

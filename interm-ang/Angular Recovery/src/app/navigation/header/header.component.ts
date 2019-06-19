@@ -1,6 +1,8 @@
-import { Component, OnInit, EventEmitter, Output} from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Inject} from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Subscription } from 'rxjs/Subscription';
 import  { WalletService } from '../../wallet/wallet.service';
+import { LoginComponent } from '../../login/login.component';
 
 @Component({
   selector: 'app-header',
@@ -11,10 +13,23 @@ export class HeaderComponent {
 
   // void is to specify that, this event has no pay load, or any any data getting emitetd with it.
   // @Output specifies that, this event is listenable from outside
-  constructor (private walletService: WalletService){
+  constructor (private walletService: WalletService, public dialog: MatDialog){
   };
 
   @Output() sidenavToggle = new EventEmitter<void>();
+
+  openDialog(logger): void {
+    const dialogRef = this.dialog.open(LoginComponent, {
+      data: {
+        passkey: logger
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The login dialog was closed');
+      
+    });
+  }
 
 
 
